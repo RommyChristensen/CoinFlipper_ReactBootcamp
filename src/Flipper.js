@@ -7,7 +7,8 @@ class Flipper extends Component {
     faces: [
       "https://tinyurl.com/react-coin-heads-jpg",
       "https://tinyurl.com/react-coin-tails-jpg"
-    ]
+    ],
+    altImage: ["heads", "tails"]
   };
 
   constructor(props) {
@@ -40,7 +41,10 @@ class Flipper extends Component {
     return (
       <div className="Flipper">
         <h1>Flipper coin</h1>
-        <Face imgSrc={this.props.faces[this.state.idxFace]} />
+        <Face
+          imgSrc={this.props.faces[this.state.idxFace]}
+          altImage={this.props.altImage[this.state.idxFace]}
+        />
         <br />
         <button onClick={this.flipCoin}>Flip</button>
         <p>
