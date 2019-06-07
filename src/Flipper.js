@@ -5,10 +5,10 @@ import Face from "./Face";
 class Flipper extends Component {
   static defaultProps = {
     faces: [
-      "https://tinyurl.com/react-coin-heads-jpg",
-      "https://tinyurl.com/react-coin-tails-jpg"
-    ],
-    altImage: ["heads", "tails"]
+      { side: "heads", url: "https://tinyurl.com/react-coin-heads-jpg" },
+      { side: "tails", url: "https://tinyurl.com/react-coin-tails-jpg" },
+      { side: null, url: null }
+    ]
   };
 
   constructor(props) {
@@ -17,7 +17,7 @@ class Flipper extends Component {
     this.state = {
       ctrTail: 0,
       ctrHead: 0,
-      idxFace: null
+      idxFace: 2
     };
 
     this.flipCoin = this.flipCoin.bind(this);
@@ -37,13 +37,12 @@ class Flipper extends Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <div className="Flipper">
         <h1>Flipper coin</h1>
         <Face
-          imgSrc={this.props.faces[this.state.idxFace]}
-          altImage={this.props.altImage[this.state.idxFace]}
+          imgSrc={this.props.faces[this.state.idxFace].url}
+          altImage={this.props.faces[this.state.idxFace].side}
         />
         <br />
         <button onClick={this.flipCoin}>Flip</button>
